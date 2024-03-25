@@ -1,0 +1,7 @@
+/media/jpw/m10/00hub/edge_dection/build/CMakeFiles/canny.dir
+/media/jpw/m10/00hub/edge_dection/build/CMakeFiles/sobel.dir
+/media/jpw/m10/00hub/edge_dection/build/CMakeFiles/roberts.dir
+/media/jpw/m10/00hub/edge_dection/build/CMakeFiles/prewitt.dir
+/media/jpw/m10/00hub/edge_dection/build/CMakeFiles/laplace.dir
+/media/jpw/m10/00hub/edge_dection/build/CMakeFiles/edit_cache.dir
+/media/jpw/m10/00hub/edge_dection/build/CMakeFiles/rebuild_cache.dir
