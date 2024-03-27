@@ -35,7 +35,7 @@ int main(int argc, char **argv)
   mergeImg(outImg, img, dst); // 图像拼接
   cv::namedWindow("img");
   cv::imshow("img", outImg); // 图像显示
-  cv::imwrite("canny算法.jpg", outImg);
+  // cv::imwrite("canny算法.jpg", outImg);
 
   cv::waitKey(); // 等待键值输入
   return 0;

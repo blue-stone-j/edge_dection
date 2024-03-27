@@ -1,4 +1,7 @@
+#ifndef UTILITIES_H
+#define UTILITIES_H
 
+#include <iostream>
 
 #include <opencv2/opencv.hpp>
 
@@ -20,3 +23,5 @@ void mergeImg(cv::Mat &dst, cv::Mat &src1, cv::Mat &src2)
   src1.copyTo(dst(cv::Rect(0, 0, src1.cols, src1.rows)));
   src2.copyTo(dst(cv::Rect(src1.cols + 5, 0, src2.cols, src2.rows)));
 }
+
+#endif

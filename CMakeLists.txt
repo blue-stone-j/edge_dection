@@ -20,17 +20,17 @@ list(APPEND TARGET_LIBRARIES ${OpenCV_LIBRARIES})
 add_executable(canny canny/canny.cpp)
 target_link_libraries(canny ${TARGET_LIBRARIES} gflags)
 
-add_executable(sobel sobel/sobel.cpp)
-target_link_libraries(sobel ${TARGET_LIBRARIES} gflags)
-
-add_executable(roberts roberts/roberts.cpp)
-target_link_libraries(roberts ${TARGET_LIBRARIES} gflags)
+add_executable(laplace laplace/laplace.cpp)
+target_link_libraries(laplace ${TARGET_LIBRARIES} gflags)
 
 add_executable(prewitt prewitt/prewitt.cpp)
 target_link_libraries(prewitt ${TARGET_LIBRARIES} gflags)
 
-add_executable(laplace laplace/laplace.cpp)
-target_link_libraries(laplace ${TARGET_LIBRARIES} gflags)
+add_executable(roberts roberts/roberts.cpp)
+target_link_libraries(roberts ${TARGET_LIBRARIES} gflags)
+
+add_executable(sobel sobel/sobel.cpp)
+target_link_libraries(sobel ${TARGET_LIBRARIES} gflags)
 
 # ---------------------------------------------------------------------------------------
 # Install

@@ -21,7 +21,7 @@ void gaussianConvolution(cv::Mat &img, cv::Mat &dst)
       int sum = 0;
       for (int n = 0; n < 3; n++)
       {
-        sum += data[i - 1 + n] * templates[n]; // 相称累加
+        sum += data[i - 1 + n] * templates[n]; // 累加
       }
       sum /= 4;
       dst.ptr<uchar>(j)[i] = sum;
@@ -64,8 +64,10 @@ void getGrandient(cv::Mat &img, cv::Mat &gradXY, cv::Mat &theta)
   {
     for (int i = 1; i < img.cols - 1; i++)
     {
-      double gradY = double(img.ptr<uchar>(j - 1)[i - 1] + 2 * img.ptr<uchar>(j - 1)[i] + img.ptr<uchar>(j - 1)[i + 1] - img.ptr<uchar>(j + 1)[i - 1] - 2 * img.ptr<uchar>(j + 1)[i] - img.ptr<uchar>(j + 1)[i + 1]);
-      double gradX = double(img.ptr<uchar>(j - 1)[i + 1] + 2 * img.ptr<uchar>(j)[i + 1] + img.ptr<uchar>(j + 1)[i + 1] - img.ptr<uchar>(j - 1)[i - 1] - 2 * img.ptr<uchar>(j)[i - 1] - img.ptr<uchar>(j + 1)[i - 1]);
+      double gradY = double(img.ptr<uchar>(j - 1)[i - 1] + 2 * img.ptr<uchar>(j - 1)[i] + img.ptr<uchar>(j - 1)[i + 1] -
+                            img.ptr<uchar>(j + 1)[i - 1] - 2 * img.ptr<uchar>(j + 1)[i] - img.ptr<uchar>(j + 1)[i + 1]);
+      double gradX = double(img.ptr<uchar>(j - 1)[i + 1] + 2 * img.ptr<uchar>(j)[i + 1] + img.ptr<uchar>(j + 1)[i + 1] -
+                            img.ptr<uchar>(j - 1)[i - 1] - 2 * img.ptr<uchar>(j)[i - 1] - img.ptr<uchar>(j + 1)[i - 1]);
 
       gradXY.ptr<uchar>(j)[i] = sqrt(gradX * gradX + gradY * gradY); // 计算梯度
       theta.ptr<uchar>(j)[i] = atan(gradY / gradX);                  // 计算梯度方向
@@ -92,23 +94,25 @@ void nonLocalMaxValue(cv::Mat &gradXY, cv::Mat &theta, cv::Mat &dst)
       {
         continue;
       }
+
+      // find local max
       double g0, g1;
-      if ((t >= -(3 * M_PI / 8)) && (t < -(M_PI / 8)))
+      if ((-(3 * M_PI / 8) <= t) && (t < -(M_PI / 8))) // -67.5  -22.5
       {
         g0 = double(dst.ptr<uchar>(j - 1)[i - 1]);
         g1 = double(dst.ptr<uchar>(j + 1)[i + 1]);
       }
-      else if ((t >= -(M_PI / 8)) && (t < M_PI / 8))
+      else if ((t >= -(M_PI / 8)) && (t < M_PI / 8)) // -22.5  22.5
       {
         g0 = double(dst.ptr<uchar>(j)[i - 1]);
         g1 = double(dst.ptr<uchar>(j)[i + 1]);
       }
-      else if ((t >= M_PI / 8) && (t < 3 * M_PI / 8))
+      else if ((t >= M_PI / 8) && (t < 3 * M_PI / 8)) // 22.5  67.5
       {
         g0 = double(dst.ptr<uchar>(j - 1)[i + 1]);
         g1 = double(dst.ptr<uchar>(j + 1)[i - 1]);
       }
-      else
+      else // 67.5  90    -90  -67.5
       {
         g0 = double(dst.ptr<uchar>(j - 1)[i]);
         g1 = double(dst.ptr<uchar>(j + 1)[i]);
@@ -128,7 +132,7 @@ void nonLocalMaxValue(cv::Mat &gradXY, cv::Mat &theta, cv::Mat &dst)
  */
 void doubleThresholdLink(cv::Mat &img)
 {
-  // 循环找到强边缘点，把其领域内的弱边缘点变为强边缘点
+  // 循环找到强边缘点，把其邻域内的弱边缘点变为强边缘点
   for (int j = 1; j < img.rows - 2; j++)
   {
     for (int i = 1; i < img.cols - 2; i++)
