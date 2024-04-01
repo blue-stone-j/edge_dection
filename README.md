@@ -1,5 +1,19 @@
 # edge_dection
 
+### compile and run
+```bash
+# get into folder
+cd source_folder
+# generate empty folder to store compilation file
+mkdir build
+# compile configuration
+cmake ..
+# compile
+make install
+# run
+./canny
+```
+
 ### canny
 1. 高斯滤波抑制高频噪声。
 2. 计算梯度的大小和方向：直接使用差分或者 Sobel 算子实现。

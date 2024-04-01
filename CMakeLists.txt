@@ -35,7 +35,7 @@ target_link_libraries(sobel ${TARGET_LIBRARIES} gflags)
 # ---------------------------------------------------------------------------------------
 # Install
 # ---------------------------------------------------------------------------------------
-# install(TARGETS camera_node undistort_node
+# install(TARGETS canny prewitt
 # ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 # LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 # RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
