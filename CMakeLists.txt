@@ -17,19 +17,19 @@ set(TARGET_LIBRARIES "")
 list(APPEND TARGET_LIBRARIES ${GLOG_LIBRARIES})
 list(APPEND TARGET_LIBRARIES ${OpenCV_LIBRARIES})
 
-add_executable(canny canny/canny.cpp)
+add_executable(canny src/canny.cpp test/canny.cpp src/common/utilities.cpp)
 target_link_libraries(canny ${TARGET_LIBRARIES} gflags)
 
-add_executable(laplace laplace/laplace.cpp)
+add_executable(laplace test/laplace.cpp)
 target_link_libraries(laplace ${TARGET_LIBRARIES} gflags)
 
-add_executable(prewitt prewitt/prewitt.cpp)
+add_executable(prewitt src/prewitt.cpp test/prewitt.cpp)
 target_link_libraries(prewitt ${TARGET_LIBRARIES} gflags)
 
-add_executable(roberts roberts/roberts.cpp)
+add_executable(roberts src/roberts.cpp test/roberts.cpp)
 target_link_libraries(roberts ${TARGET_LIBRARIES} gflags)
 
-add_executable(sobel sobel/sobel.cpp)
+add_executable(sobel src/sobel.cpp test/sobel.cpp)
 target_link_libraries(sobel ${TARGET_LIBRARIES} gflags)
 
 # ---------------------------------------------------------------------------------------
