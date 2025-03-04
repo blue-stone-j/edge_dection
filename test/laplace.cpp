@@ -2,7 +2,7 @@
 
 int main(int argc, char **argv)
 {
-  cv::Mat src = cv::imread("../asserts/woman.jpg", 0);
+  cv::Mat src = cv::imread("../assets/woman.jpg", 0);
   if (!src.data || src.channels() != 1)
   {
     fprintf(stderr, "read image fail\n");
@@ -21,7 +21,7 @@ int main(int argc, char **argv)
   cv::Laplacian(src, dst, src.depth(), ksize);
   cv::namedWindow("img");
   cv::imshow("img", dst); // 图像显示
-  // cv::imwrite("../asserts/woman_l.jpg", dst);
+  // cv::imwrite("../assets/woman_l.jpg", dst);
 
   // save_image(src, dst, width, height / 2, "E:/GitCode/CUDA_Test/test_data/images/laplacian_result.png");
   cv::waitKey(); // 等待键值输入

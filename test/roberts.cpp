@@ -4,7 +4,7 @@
 int main(int argc, char **argv)
 {
   cv::Mat src, src_binary, src_gray;
-  src = cv::imread("../asserts/woman.jpg");
+  src = cv::imread("../assets/woman.jpg");
   if (src.empty())
   {
     printf("读取图像文件失败");

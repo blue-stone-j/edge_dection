@@ -2,7 +2,7 @@
 
 int main(int argc, char **argv)
 {
-  cv::Mat img = cv::imread("../asserts/woman.jpg", cv::IMREAD_GRAYSCALE);
+  cv::Mat img = cv::imread("../assets/woman.jpg", cv::IMREAD_GRAYSCALE);
   if (img.empty())
   {
     printf("读取图像文件失败");
